@@ -20,14 +20,12 @@ export default function Page() {
             </button>
 
             <Link href="/signup" className={styles.text}>
-              Não possui uma conta? cadastrar-se
+              Não possui uma conta? Cadastrar-se
             </Link>
 
           </form>
         </section>
       </div >
-
-
     </>
 
   );
