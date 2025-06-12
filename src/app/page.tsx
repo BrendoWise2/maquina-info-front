@@ -1,9 +1,54 @@
+import { api } from "@/services/api";
 import styles from "./page.module.scss";
 import mecanimoImg from '/public/imagens/background.jpg'
 import Image from 'next/image'
 import Link from 'next/link'
+import { redirect } from "next/navigation";
+import { cookies } from "next/headers";
+import path from "path";
 
 export default function Page() {
+
+  async function handleLogin(formData: FormData) {
+    "use server"
+
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    if (email === "" || password === "") {
+      return;
+    }
+
+    try {
+
+      const response = await api.post("/session", {
+        email,
+        password
+      })
+
+      if (!response.data.token) {
+        return;
+      }
+
+      console.log(response.data);
+
+      const expressTime = 60 * 60 * 24 * 30 * 1000;
+      cookies().set("session", response.data.token, {
+        maxAge: expressTime,
+        path: "/",
+        httpOnly: false,
+        secure: process.env.NODE_ENV === "production"
+      })
+
+    } catch (err) {
+      console.log(err)
+      return;
+    }
+
+    redirect("/dashboard")
+
+  }
+
   return (
 
     <>
@@ -12,7 +57,7 @@ export default function Page() {
 
         <section className={styles.login}>
           <h1> Login</h1>
-          <form>
+          <form action={handleLogin}>
             <input type="email" required name="email" placeholder="Digite seu email..." className={styles.input} />
             <input type="password" required name="password" placeholder="**********" className={styles.input} />
             <button type="submit">
