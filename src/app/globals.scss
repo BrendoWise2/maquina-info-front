@@ -16,10 +16,20 @@
   --dark-900: #101026;
   --dark-700: #1d1d2e;
 
+  --whiteOff: #F8F8F8;
+
   --gray-100: #8a8a8a;
   --green-900: #3fffa3;
   --red-900: #FF3f4b;
+
+  --green-status: #4caf50;
+  --orange-status: #ff9800;
+  --red-status: #f44336;
+  --gray-text: #667085;
+  --dark-text: #101828;
+  --border-color: #eaecf0;
 }
+
 
 
 button {
@@ -32,7 +42,7 @@ a {
 }
 
 body {
-  background-color: var(--dark-700);
+  background-color: var(--white);
 }
 
 body,
