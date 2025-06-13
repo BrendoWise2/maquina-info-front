@@ -1,0 +1,18 @@
+.button {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 0;
+    border-radius: 8px;
+    background-color: var(--primary-blue);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 0.5rem; // Espaço extra antes do botão
+
+    &:hover {
+        background-color: var(--primary-blue-dark);
+    }
+
+}
