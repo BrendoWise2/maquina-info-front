@@ -60,6 +60,11 @@
     }
 }
 
+.buttonCard {
+    border: none;
+    border-radius: 8px;
+}
+
 .cardHeader {
     padding: 1rem 1.25rem;
     border-bottom: 1px solid var(--border-color);
