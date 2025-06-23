@@ -41,7 +41,7 @@ export function Form({ machines }: Prop) {
 
         data.append("title", title);
         data.append("description", description);
-        data.append("machine_id", machines[Number(machineIndex)].id);
+        data.append("machineId", machines[Number(machineIndex)].id);
         data.append("file", file);
 
         const token = getCookieClient()

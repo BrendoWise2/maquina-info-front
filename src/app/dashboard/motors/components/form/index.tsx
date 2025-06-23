@@ -53,13 +53,15 @@ export function Form({ machines }: Props) {
             return;
         }
 
+        console.log("APARECENDO ID:", machineIndex);
+
         const data = new FormData();
 
         data.append("name", name);
         data.append("power", power);
         data.append("description", description);
         data.append("manufacturer", manufacturer);
-        data.append("machine_id", machines[Number(machineIndex)].id)
+        data.append("machineId", machines[Number(machineIndex)].id)
         data.append("file", image);
 
         const token = getCookieClient();

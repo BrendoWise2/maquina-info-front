@@ -1,39 +1,43 @@
-"use client"
-import { Html5QrcodeScanner } from 'html5-qrcode';
-import { useState, useEffect } from 'react'
+"use client";
+import { Html5QrcodeScanner } from "html5-qrcode";
+import { useEffect, useRef } from "react";
 
-export function QrcodeScanner() {
+interface Props {
+    onScanSuccess: (qrcodeId: string) => void;
+}
 
-    const [scannedCode, setScannedCode] = useState<string | null>(null);
+export function QrcodeScanner({ onScanSuccess }: Props) {
+    const scannerRef = useRef<Html5QrcodeScanner | null>(null);
+
 
     useEffect(() => {
-        const scanner = new Html5QrcodeScanner("reader",
-            { fps: 10, qrbox: { width: 250, height: 250 } },
-            false
-        );
+        const scanner = new Html5QrcodeScanner("reader", {
+            fps: 10,
+            qrbox: { width: 250, height: 250 },
+        }, false);
 
-        function onSucess(decodedText: string) {
-            setScannedCode(decodedText);
-            scanner.clear();
-        }
+        scannerRef.current = scanner;
 
-        function onFailure(error: any) {
-            console.warn(`Erro ao escanear: ${error}`);
-        }
+        const handleSuccess = (decodedText: string) => {
+            onScanSuccess(decodedText);
+            scanner.clear().then(() => {
+                const el = document.getElementById("reader");
+                if (el) el.remove();
+            });
+        };
 
-        scanner.render(onSucess, onFailure);
-    }, []);
+        scanner.render(handleSuccess, () => { });
+
+        return () => {
+            scanner.clear().catch(err =>
+                console.error("Erro ao limpar o scanner", err)
+            );
+        };
+    }, [onScanSuccess]);
 
     return (
         <div className="container text-center mt-4">
-            <h2>Leitor Qrcode</h2>
-            <div id="reader" style={{ width: "100%" }}></div>
-
-            {scannedCode && (
-                <div className='alert alert-success mt-3'>
-                    <strong>QR CODE LIDO:</strong>{scannedCode}
-                </div>
-            )}
+            <div id="reader" style={{ width: "100%" }} />
         </div>
     );
 }

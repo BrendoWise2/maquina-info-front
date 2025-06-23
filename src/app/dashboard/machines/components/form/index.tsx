@@ -34,10 +34,10 @@ export function Form() {
         const token = getCookieClient();
 
         const name = formData.get("name");
-        const qrcode = formData.get("qrcode");
+        // const qrcode = formData.get("qrcode");
         const sector = formData.get("sector");
 
-        if (!name || !qrcode || !sector || !image) {
+        if (!name || !sector || !image) {
             toast.warning("Preencha todos os campos!")
             return;
         }
@@ -45,7 +45,7 @@ export function Form() {
         const data = new FormData();
 
         data.append("name", name);
-        data.append("qrcode", qrcode);
+        //  data.append("qrcode", qrcode);
         data.append("sector", sector);
         data.append("file", image);
 
@@ -90,9 +90,7 @@ export function Form() {
                 <label> Equipamento:
                     <input type="text" name="name" placeholder="Nome do equipamento" required className={styles.input} />
                 </label>
-                <label> Qrcode:
-                    <input type="text" name="qrcode" placeholder="Link do qrcode" className={styles.input} />
-                </label>
+
 
                 <label> Setor:
                     <input type="text" name="sector" placeholder="Usinagem..." className={styles.input} />
