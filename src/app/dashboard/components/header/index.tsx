@@ -53,6 +53,10 @@ export function Header() {
                         Qrcode
                     </Link>
 
+                    <Link href="/dashboard/teste">
+                        Teste
+                    </Link>
+
                     <form action={handleLogout}>
                         <button type='submit'>
                             <LogOutIcon size={24} color='#000' />

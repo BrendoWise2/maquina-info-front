@@ -52,19 +52,19 @@ export default function Page() {
   return (
 
     <>
-      <div className={styles.containerCenter}>
+      <div class={styles.containerCenter}>
 
 
-        <section className={styles.login}>
+        <section class={styles.login}>
           <h1> Login</h1>
           <form action={handleLogin}>
-            <input type="email" required name="email" placeholder="Digite seu email..." className={styles.input} />
-            <input type="password" required name="password" placeholder="**********" className={styles.input} />
+            <input type="email" required name="email" placeholder="Digite seu email..." class={styles.input} />
+            <input type="password" required name="password" placeholder="**********" class={styles.input} />
             <button type="submit">
               Acessar
             </button>
 
-            <Link href="/signup" className={styles.text}>
+            <Link href="/signup" class={styles.text}>
               Não possui uma conta? Cadastrar-se
             </Link>
 

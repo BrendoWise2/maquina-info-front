@@ -1,16 +1,23 @@
 "use client"
 import styles from './styles.module.scss'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { QrcodeScanner } from './qrcodeScanner'
 import { MachineProps } from '@/lib/machine.type'
 import { api } from '@/services/api'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { HardDrive, Droplets, BookOpen } from 'lucide-react'
 
 
 export function Form() {
 
     const [showScanner, setShowScanner] = useState(false);
     const [machine, setMachine] = useState<MachineProps | null>(null);  // Definindo o tipo do estado como `null | boolean` para mais clareza
+
+    // Use useEffect para carregar o JS do Bootstrap no cliente
+    useEffect(() => {
+        // A importação dinâmica garante que o código só rode no lado do cliente (navegador)
+        import('bootstrap/dist/js/bootstrap.bundle.min.js');
+    }, []);
 
     // Função a ser chamada quando o QR code for escaneado com sucesso
     async function handleScanSuccess(qrcodeId: string) {
@@ -71,7 +78,6 @@ export function Form() {
                             <QrcodeScanner onScanSuccess={handleScanSuccess} />
                         )
                     ) : (
-                        // Exibe as informações da máquina caso o estado de `machine` seja atualizado
                         <div className="card shadow-lg border-0 rounded-4 p-4 text-center" style={{ maxWidth: '400px' }}>
                             <img
                                 src={`http://localhost:3333/files/${machine.image}`}
@@ -80,25 +86,84 @@ export function Form() {
                                 style={{ maxHeight: '250px', objectFit: 'cover' }}
                             />
                             <div className="card-body">
-                                <h4 className="card-title mb-3 text-primary fw-bold">Equipamento: {machine.name}</h4>
-                                <p className="card-text"><strong>Setor:</strong> {machine.sector}</p>
+                                <h4 className="card-title mb-3 text-primary fw-bold">{machine.name}</h4>
+                                <div className="d-flex align-items-center justify-content-space-between gap-3">
+                                    <p className={styles.description}><HardDrive size={16} /> Motores: <span>{machine.motors.length}</span></p>
+                                    <p className={styles.description}><Droplets size={16} /> Bombas: <span> {machine.pumps.length}</span></p>
+                                    <p className={styles.description}><BookOpen size={16} /> Manuais: <span>{machine.pumps.length}</span></p>
+                                </div>
 
-                                {/* Você pode adicionar motores aqui depois */}
-                                <h6 className="mt-4 mb-2 text-muted">Motores</h6>
-                                <ul className="list-group list-group-flush mb-3">
-                                    {machine.motors?.length ? (
-                                        machine.motors.map((motor, index) => (
-                                            <li key={index} className="list-group-item">{motor.name}</li>
-                                        ))
-                                    ) : (
-                                        <li className="list-group-item text-muted">Nenhum motor registrado</li>
-                                    )}
-                                </ul>
+                                {/* Accordion para Motores */}
+                                <div className="accordion" id="accordionMotores">
+                                    <div className="accordion-item">
+                                        <h2 className="accordion-header" id="headingMotores">
+                                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMotores" aria-expanded="false" aria-controls="collapseMotores">
+                                                <div className="d-flex align-items-center gap-2">
+                                                    <HardDrive size={16} /> <span>Lista de Motores</span>
+                                                </div>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseMotores" className="accordion-collapse collapse" aria-labelledby="headingMotores" data-bs-parent="#accordionMotores">
+                                            <div className="accordion-body text-start">
+                                                {/* Conteúdo da lista de motores */}
+                                                {machine.motors.map(motor => (
+                                                    <div className="card" style={{ width: "18rem" }} key={motor.id}>
+                                                        <img src={`http://localhost:3333/files/${motor.image}`} className="card-img-top" alt="..." />
+                                                        <div className="card-body">
+                                                            <h5 className="card-title text-warning fw-bold">{motor.name}</h5>
+                                                            <p className="card-text description"><span>Potência:</span> {motor.power}</p>
+                                                            <p className="card-text"><span>Fabricante:</span> {motor.manufacturer}</p>
+                                                            <p className="card-text"><span>Descrição:</span> {motor.description}</p>
+                                                            <a href="#" className="btn btn-primary">Subir</a>
+                                                        </div>
+                                                    </div>
+                                                ))}
 
-                                <button
-                                    className="btn btn-outline-secondary w-100 mt-3"
-                                    onClick={() => setMachine(null)}
-                                >
+                                                <p>Conteúdo de Motores</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Accordion para Bombas */}
+                                <div className="accordion" id="accordionBombas">
+                                    <div className="accordion-item">
+                                        <h2 className="accordion-header" id="headingBombas">
+                                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBombas" aria-expanded="false" aria-controls="collapseBombas">
+                                                <div className="d-flex align-items-center gap-2">
+                                                    <Droplets size={16} /> <span>Lista de Bombas</span>
+                                                </div>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseBombas" className="accordion-collapse collapse" aria-labelledby="headingBombas" data-bs-parent="#accordionBombas">
+                                            <div className="accordion-body text-start">
+                                                {/* Conteúdo da lista de bombas */}
+                                                <p>Conteúdo de Bombas</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Accordion para Manuais */}
+                                <div className="accordion" id="accordionManuais">
+                                    <div className="accordion-item">
+                                        <h2 className="accordion-header" id="headingManuais">
+                                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseManuais" aria-expanded="false" aria-controls="collapseManuais">
+                                                <div className="d-flex align-items-center gap-2">
+                                                    <BookOpen size={16} /> <span>Lista de Manuais</span>
+                                                </div>
+                                            </button>
+                                        </h2>
+                                        <div id="collapseManuais" className="accordion-collapse collapse" aria-labelledby="headingManuais" data-bs-parent="#accordionManuais">
+                                            <div className="accordion-body text-start">
+                                                {/* Conteúdo da lista de manuais */}
+                                                <p>Conteúdo de Manuais</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button className="btn btn-outline-secondary w-100 mt-3">
                                     Voltar
                                 </button>
                             </div>
