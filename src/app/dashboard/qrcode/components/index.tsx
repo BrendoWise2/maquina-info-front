@@ -6,6 +6,7 @@ import { MachineProps } from '@/lib/machine.type'
 import { api } from '@/services/api'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { HardDrive, Droplets, BookOpen } from 'lucide-react'
+import manualLogo from '/public/imagens/util/manual.png'
 
 
 export function Form() {
@@ -138,6 +139,19 @@ export function Form() {
                                         <div id="collapseBombas" className="accordion-collapse collapse" aria-labelledby="headingBombas" data-bs-parent="#accordionBombas">
                                             <div className="accordion-body text-start">
                                                 {/* Conteúdo da lista de bombas */}
+                                                {machine.pumps.map(pump => (
+                                                    <div className="card" style={{ width: "18rem" }} key={pump.id}>
+                                                        <img src={`http://localhost:3333/files/${pump.image}`} className="card-img-top" alt="..." />
+                                                        <div className="card-body">
+                                                            <h5 className="card-title text-warning fw-bold">{pump.name}</h5>
+                                                            <p className="card-text description"><span>Potência:</span> {pump.power}</p>
+                                                            <p className="card-text"><span>Fabricante:</span> {pump.manufacturer}</p>
+                                                            <p className="card-text"><span>Descrição:</span> {pump.description}</p>
+                                                            <a href="#" className="btn btn-primary">Subir</a>
+                                                        </div>
+                                                    </div>
+                                                ))}
+
                                                 <p>Conteúdo de Bombas</p>
                                             </div>
                                         </div>
@@ -156,7 +170,20 @@ export function Form() {
                                         </h2>
                                         <div id="collapseManuais" className="accordion-collapse collapse" aria-labelledby="headingManuais" data-bs-parent="#accordionManuais">
                                             <div className="accordion-body text-start">
+
                                                 {/* Conteúdo da lista de manuais */}
+                                                {machine.manuals.map(manual => (
+
+                                                    <div className="card" style={{ width: "18rem" }} key={manual.id}>
+                                                        <img src={manualLogo.src} className="card-img-top mx-auto d-block img-fluid w-75" alt="..." />
+                                                        <div className="card-body">
+                                                            <h5 className="card-title text-warning fw-bold">{manual.title}</h5>
+                                                            <p className="card-text"><span>Descrição:</span> {manual.description}</p>
+                                                            <a href={`http://localhost:3333/files/${manual.file_url}`} className="btn btn-primary mx-auto d-block">Visualizar</a>
+                                                        </div>
+                                                    </div>
+                                                ))}
+
                                                 <p>Conteúdo de Manuais</p>
                                             </div>
                                         </div>
