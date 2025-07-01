@@ -1,6 +1,4 @@
 import styles from "./styles.module.scss";
-import Image from "next/image";
-import equipamentoImg from '/public/imagens/celula02.jpg';
 import { RefreshCw, HardDrive, Droplets, BookOpen, CalendarCheck } from "lucide-react";
 import { MachineProps } from '@/lib/machine.type'
 
@@ -28,19 +26,15 @@ export function Machines({ machines }: Props) {
                             </div>
                             <div className={styles.cardBody}>
                                 <div className={styles.imageContainer}>
-                                    <Image
+                                    <img
                                         alt={machine.name}
-                                        src={equipamentoImg}
-                                        layout="responsive"
-                                        width={100}
-                                        height={100}
-                                        quality={100}
-                                    />
+                                        src={machine.image}
+                                        className="img-fluid rounded mx-auto d-block shadow w-100" />
                                 </div>
                                 <div className={styles.infoContainer}>
-                                    <p><HardDrive size={16} /> <span>{machine.motors.length}</span></p>
-                                    <p><Droplets size={16} /> <span>{machine.pumps.length}</span></p>
-                                    <p><BookOpen size={16} /> <span>{machine.manuals.length}</span></p>
+                                    <p><HardDrive size={16} /> Motores: <span>{machine.motors.length}</span></p>
+                                    <p><Droplets size={16} /> Bombas: <span>{machine.pumps.length}</span></p>
+                                    <p><BookOpen size={16} /> Manuais: <span>{machine.manuals.length}</span></p>
                                 </div>
                             </div>
                             <div className={styles.cardFooter}>

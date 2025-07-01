@@ -84,8 +84,8 @@
 
 .imageContainer {
     flex-shrink: 0;
-    width: 80px;
-    height: 80px;
+    max-width: 300px;
+    width: 100%;
 
     img {
         border-radius: 8px;
