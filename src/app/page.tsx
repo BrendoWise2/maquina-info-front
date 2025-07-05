@@ -33,7 +33,7 @@ export default function Page() {
       console.log(response.data);
 
       const expressTime = 60 * 60 * 24 * 30 * 1000;
-      cookies().set("session", response.data.token, {
+      (await cookies()).set("session", response.data.token, {
         maxAge: expressTime,
         path: "/",
         httpOnly: false,
@@ -52,19 +52,19 @@ export default function Page() {
   return (
 
     <>
-      <div class={styles.containerCenter}>
+      <div className={styles.containerCenter}>
 
 
-        <section class={styles.login}>
+        <section className={styles.login}>
           <h1> Login</h1>
           <form action={handleLogin}>
-            <input type="email" required name="email" placeholder="Digite seu email..." class={styles.input} />
-            <input type="password" required name="password" placeholder="**********" class={styles.input} />
+            <input type="email" required name="email" placeholder="Digite seu email..." className={styles.input} />
+            <input type="password" required name="password" placeholder="**********" className={styles.input} />
             <button type="submit">
               Acessar
             </button>
 
-            <Link href="/signup" class={styles.text}>
+            <Link href="/signup" className={styles.text}>
               Não possui uma conta? Cadastrar-se
             </Link>
 
