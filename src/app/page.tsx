@@ -33,7 +33,8 @@ export default function Page() {
       console.log(response.data);
 
       const expressTime = 60 * 60 * 24 * 30 * 1000;
-      cookies().set("session", response.data.token, {
+      const cookieStore = await cookies();
+      cookieStore.set("session", response.data.token, {
         maxAge: expressTime,
         path: "/",
         httpOnly: false,
