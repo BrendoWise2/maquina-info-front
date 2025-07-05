@@ -5,7 +5,7 @@ import { MachineProps } from "@/lib/machine.type"
 
 async function getMachines(): Promise<MachineProps[] | []> {
 
-    const token = getCookieServer();
+    const token = await getCookieServer();
 
     try {
 
