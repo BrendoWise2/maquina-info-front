@@ -5,13 +5,13 @@ import { MachineProps } from "@/lib/machine.type"
 
 async function getMachines(): Promise<MachineProps[] | []> {
 
-    //const token = await getCookieServer();
+    const token = getCookieServer();
 
     try {
 
         const response = await api.get("/machine/detail", {
             headers: {
-                //  Authorization: `Bearer ${token}`
+                Authorization: `Bearer ${token}`
             }
         })
 
