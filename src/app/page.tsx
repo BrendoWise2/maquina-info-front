@@ -37,7 +37,7 @@ export default function Page() {
       cookieStore.set("session", response.data.token, {
         maxAge: expressTime,
         path: "/",
-        httpOnly: true,
+        httpOnly: false,
         secure: process.env.NODE_ENV === "production"
       })
 
