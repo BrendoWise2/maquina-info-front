@@ -31,7 +31,7 @@ export function Form() {
 
     async function handleRegisterMachine(formData: FormData) {
 
-        const token = getCookieClient();
+        const token = await getCookieClient();
 
         const name = formData.get("name");
         // const qrcode = formData.get("qrcode");

@@ -4,7 +4,7 @@ import { api } from '@/services/api'
 
 export default async function Machines() {
 
-    const token = getCookieServer();
+    const token = await getCookieServer();
 
     const response = await api.get("/machine", {
         headers: {
