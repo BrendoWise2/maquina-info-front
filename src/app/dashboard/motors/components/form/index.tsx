@@ -64,7 +64,7 @@ export function Form({ machines }: Props) {
         data.append("machineId", machines[Number(machineIndex)].id)
         data.append("file", image);
 
-        const token = getCookieClient();
+        const token = await getCookieClient();
 
         await api.post("/motor", data, {
             headers: {

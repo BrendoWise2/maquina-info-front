@@ -5,7 +5,7 @@ import { getCookieServer } from '@/lib/cookieServer'
 
 export default async function Motor() {
 
-    const token = getCookieServer();
+    const token = await getCookieServer();
 
     const response = await api.get("/machine", {
         headers: {

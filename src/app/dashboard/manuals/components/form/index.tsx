@@ -44,7 +44,7 @@ export function Form({ machines }: Prop) {
         data.append("machineId", machines[Number(machineIndex)].id);
         data.append("file", file);
 
-        const token = getCookieClient()
+        const token = await getCookieClient()
 
 
         api.post("/manual", data, {
