@@ -144,7 +144,7 @@ export function Form() {
                                                         <img src={`http://localhost:3333/files/${pump.image}`} className="card-img-top" alt="..." />
                                                         <div className="card-body">
                                                             <h5 className="card-title text-warning fw-bold">{pump.name}</h5>
-                                                            <p className="card-text description"><span>Potência:</span> {pump.power}</p>
+                                                            <p className="card-text description"><span>Tipo:</span> {pump.type}</p>
                                                             <p className="card-text"><span>Fabricante:</span> {pump.manufacturer}</p>
                                                             <p className="card-text"><span>Descrição:</span> {pump.description}</p>
                                                             <a href="#" className="btn btn-primary">Subir</a>
