@@ -41,6 +41,8 @@ export default function Page() {
         secure: process.env.NODE_ENV === "production"
       })
 
+      console.log("Meu token:", cookieStore)
+
     } catch (err) {
       console.log(err)
       return;
