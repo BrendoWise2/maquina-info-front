@@ -112,42 +112,7 @@ export function Header() {
                 </div>
             </header >
 
-            {/* Sidebar CoreUI - Menu aberto por padrão */}
-            <CSidebar className="sidebar-dark border-end" visible={visible}>
-                <CSidebarHeader className="border-bottom">
-                    <CSidebarBrand>DASHBOARD</CSidebarBrand>
-                    <img src={logoImg.src} width={60} alt="logo dashboard" />
-                </CSidebarHeader>
 
-                <CSidebarNav>
-                    <CNavTitle>SETORES</CNavTitle>
-
-                    <CNavItem href="#">
-                        Fundição <span className="badge bg-primary ms-auto">47</span>
-                        <i className="nav-icon cil-speedometer"></i>
-                    </CNavItem>
-                    <CNavItem href="#">
-                        IMF <span className="badge bg-primary ms-auto">13</span>
-                        <i className="nav-icon cil-speedometer"></i>
-                    </CNavItem>
-                    <CNavItem href="#">
-                        USINAGEM <span className="badge bg-primary ms-auto">19</span>
-                        <i className="nav-icon cil-speedometer"></i>
-                    </CNavItem>
-
-                    <CNavGroup toggler="Info">
-                        <CNavItem href="#">Nav dropdown item</CNavItem>
-                        <CNavItem href="#">Nav dropdown item</CNavItem>
-                    </CNavGroup>
-
-                    <CNavItem href="https://coreui.io">Configurações</CNavItem>
-                    <CNavItem href="https://coreui.io/pro/">
-                        BrendoWise <strong>@</strong>
-                    </CNavItem>
-                </CSidebarNav>
-
-                <CSidebarToggler onClick={() => setVisible(!visible)} />
-            </CSidebar>
         </>
     );
 }

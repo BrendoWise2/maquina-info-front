@@ -1,6 +1,7 @@
 "use client"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Header } from './components/header/index'
+import { SideBar } from './components/sidebar/index'
 import { Toaster } from 'sonner'
 import { useState, useEffect } from 'react';
 import { CSidebar, CSidebarHeader, CSidebarBrand, CSidebarNav, CNavItem, CSidebarToggler } from '@coreui/react';
@@ -31,6 +32,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
             {/* Header */}
             <Header />
+
+            <SideBar />
 
             {/* Conteúdo principal */}
             <main className={styles.mainContent}>
