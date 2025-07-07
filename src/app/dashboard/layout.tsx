@@ -33,12 +33,13 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             {/* Header */}
             <Header />
 
-            <SideBar />
+            <div className={styles.layout}>
+                <SideBar />
 
-            {/* Conteúdo principal */}
-            <main className={styles.mainContent}>
-                {children}
-            </main>
+                <main className={styles.mainContent}>
+                    {children}
+                </main>
+            </div>
         </>
     );
 }
