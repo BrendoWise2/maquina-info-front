@@ -93,6 +93,20 @@
   }
 }
 
+.layout {
+  display: flex;
+  flex-direction: row;
+  min-height: calc(100vh - 60px); // Ajuste para altura do Header
+}
+
+.mainContent {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  background-color: #f8f9fa;
+}
+
+
 @keyframes fadeIn {
   from {
     opacity: 0;
