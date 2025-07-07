@@ -30,10 +30,10 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <>
 
             {/* Header */}
-            <Header />
 
             {/* Conteúdo principal */}
             <main className={styles.mainContent}>
+                <Header />
                 {children}
             </main>
         </>
