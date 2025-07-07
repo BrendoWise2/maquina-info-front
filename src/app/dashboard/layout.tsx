@@ -28,20 +28,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
     return (
         <>
-            {/* Sidebar */}
-            <CSidebar className={`sidebar ${isSidebarOpen ? 'sidebar-expanded' : 'sidebar-collapsed'}`}>
-                <CSidebarHeader>
-                    <CSidebarBrand>DASHBOARD</CSidebarBrand>
-                </CSidebarHeader>
-
-                <CSidebarNav>
-                    <CNavItem href="#">Home</CNavItem>
-                    <CNavItem href="#">Maquinas</CNavItem>
-                    <CNavItem href="#">Motores</CNavItem>
-                </CSidebarNav>
-
-                <CSidebarToggler onClick={() => setSidebarOpen(!isSidebarOpen)} /> {/* Alterna entre expandir e recolher */}
-            </CSidebar>
 
             {/* Header */}
             <Header />
