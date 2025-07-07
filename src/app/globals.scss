@@ -31,7 +31,6 @@
   --primary-blue: #0056b3;
   --primary-blue-dark: #004494;
   --background-light: #f9fafb;
-
 }
 
 
@@ -58,10 +57,54 @@ button {
     1rem sans-serif; // 1rem = 16px
 }
 
+main {
+  margin-left: 250px;
+  /* Espaço para o sidebar */
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar {
+  height: 100vh;
+  /* Sidebar ocupa a altura total */
+  position: fixed;
+  /* Fixa o sidebar */
+  top: 0;
+  left: 0;
+  width: 250px;
+  /* Largura do sidebar */
+  z-index: 999;
+  /* Garante que o sidebar fique acima de outros conteúdos */
+  overflow-y: auto;
+  background-color: var(--dark-700);
+  transition: transform 0.3s ease;
+}
+
+.sidebar-collapsed {
+  transform: translateX(-100%);
+}
 
 @media (max-width: 720px) {
   html {
     font-size: 87.5%; // 14px;
+  }
+}
+
+/* Responsividade: Sidebar colapsa em telas pequenas */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    /* Sidebar começa oculto */
+  }
+
+  .sidebar-expanded {
+    transform: translateX(0);
+    /* Sidebar aparece quando expandido */
+  }
+
+  main {
+    margin-left: 0;
+    /* O conteúdo não precisa de espaço extra em telas pequenas */
   }
 }
 

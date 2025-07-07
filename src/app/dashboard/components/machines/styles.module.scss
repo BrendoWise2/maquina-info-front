@@ -2,7 +2,7 @@
 
 
 .container {
-    max-width: 1200px;
+    max-width: 900px;
     margin: 2rem auto;
     padding: 0 1rem;
 }
@@ -77,15 +77,20 @@
 
 .cardBody {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     align-items: center;
     padding: 1.25rem;
     gap: 1.25rem;
+    width: 100%;
 }
 
 .imageContainer {
     flex-shrink: 0;
     max-width: 300px;
     width: 100%;
+    justify-content: center;
 
     img {
         border-radius: 8px;
@@ -94,9 +99,11 @@
 
 .infoContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 0.75rem;
     width: 100%;
+    justify-content: center;
+    align-items: center;
 
     p {
         display: flex;

@@ -46,5 +46,5 @@ export function Machines({ machines }: Props) {
 
             </section>
         </main>
-    )
+    );
 }
