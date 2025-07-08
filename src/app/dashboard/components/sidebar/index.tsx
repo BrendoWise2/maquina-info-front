@@ -3,6 +3,7 @@ import Link from 'next/link'
 import styles from './styles.module.scss'
 import Image from 'next/image'
 import logoImg from '/public/imagens/mecanico.png'
+import logoWheel from '/public/imagens/wheel2.webp'
 import { LogOutIcon } from 'lucide-react'
 import { deleteCookie } from 'cookies-next'
 import { useRouter } from 'next/navigation'
@@ -48,8 +49,8 @@ export function SideBar() {
             {/* Sidebar CoreUI - Menu aberto por padrão */}
             < CSidebar className="sidebar-dark border-end" visible={visible} >
                 <CSidebarHeader className="border-bottom">
-                    <CSidebarBrand>DASHBOARD</CSidebarBrand>
-                    <img src={logoImg.src} width={60} alt="logo dashboard" />
+                    <CSidebarBrand>Manutenção</CSidebarBrand>
+                    <img src={logoWheel.src} width={60} alt="logo dashboard" />
                 </CSidebarHeader>
 
                 <CSidebarNav>
