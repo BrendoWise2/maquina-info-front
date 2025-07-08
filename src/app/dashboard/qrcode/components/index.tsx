@@ -81,7 +81,7 @@ export function Form() {
                     ) : (
                         <div className="card shadow-lg border-0 rounded-4 p-4 text-center" style={{ maxWidth: '400px' }}>
                             <img
-                                src={`http://localhost:3333/files/${machine.image}`}
+                                src={machine.image}
                                 alt="Imagem do Equipamento"
                                 className="card-img-top rounded-3 mb-3"
                                 style={{ maxHeight: '250px', objectFit: 'cover' }}
