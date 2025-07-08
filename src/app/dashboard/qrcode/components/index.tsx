@@ -91,7 +91,7 @@ export function Form() {
                                 <div className="d-flex align-items-center justify-content-space-between gap-3">
                                     <p className={styles.description}><HardDrive size={16} /> Motores: <span>{machine.motors.length}</span></p>
                                     <p className={styles.description}><Droplets size={16} /> Bombas: <span> {machine.pumps.length}</span></p>
-                                    <p className={styles.description}><BookOpen size={16} /> Manuais: <span>{machine.pumps.length}</span></p>
+                                    <p className={styles.description}><BookOpen size={16} /> Manuais: <span>{machine.manuals.length}</span></p>
                                 </div>
 
                                 {/* Accordion para Motores */}
