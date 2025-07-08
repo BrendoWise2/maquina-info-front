@@ -109,7 +109,7 @@ export function Form() {
                                                 {/* Conteúdo da lista de motores */}
                                                 {machine.motors.map(motor => (
                                                     <div className="card" style={{ width: "18rem" }} key={motor.id}>
-                                                        <img src={`http://localhost:3333/files/${motor.image}`} className="card-img-top" alt="..." />
+                                                        <img src={motor.image} className="card-img-top" alt={motor.name} />
                                                         <div className="card-body">
                                                             <h5 className="card-title text-warning fw-bold">{motor.name}</h5>
                                                             <p className="card-text description"><span>Potência:</span> {motor.power}</p>
@@ -141,7 +141,7 @@ export function Form() {
                                                 {/* Conteúdo da lista de bombas */}
                                                 {machine.pumps.map(pump => (
                                                     <div className="card" style={{ width: "18rem" }} key={pump.id}>
-                                                        <img src={`http://localhost:3333/files/${pump.image}`} className="card-img-top" alt="..." />
+                                                        <img src={pump.image} className="card-img-top" alt={pump.name} />
                                                         <div className="card-body">
                                                             <h5 className="card-title text-warning fw-bold">{pump.name}</h5>
                                                             <p className="card-text description"><span>Tipo:</span> {pump.type}</p>
@@ -175,11 +175,11 @@ export function Form() {
                                                 {machine.manuals.map(manual => (
 
                                                     <div className="card" style={{ width: "18rem" }} key={manual.id}>
-                                                        <img src={manualLogo.src} className="card-img-top mx-auto d-block img-fluid w-75" alt="..." />
+                                                        <img src={manualLogo.src} className="card-img-top mx-auto d-block img-fluid w-75" alt={manual.title} />
                                                         <div className="card-body">
                                                             <h5 className="card-title text-warning fw-bold">{manual.title}</h5>
                                                             <p className="card-text"><span>Descrição:</span> {manual.description}</p>
-                                                            <a href={`http://localhost:3333/files/${manual.file_url}`} className="btn btn-primary mx-auto d-block">Visualizar</a>
+                                                            <a href={manual.file_url} className="btn btn-primary mx-auto d-block">Visualizar</a>
                                                         </div>
                                                     </div>
                                                 ))}
