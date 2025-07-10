@@ -112,7 +112,7 @@ export function Form({ machines }: Props) {
 
                 <label>
                     Fuso:
-                    <input type="text" name='name' required placeholder='Nome do motor...' className={styles.input} />
+                    <input type="text" name='name' required placeholder='Nome do fuso...' className={styles.input} />
                 </label>
 
                 <label>
@@ -127,7 +127,7 @@ export function Form({ machines }: Props) {
 
                 <label>
                     Código Sap:
-                    <input type="text" name='codsap' required placeholder='Okuma...' className={styles.input} />
+                    <input type="text" name='codsap' required placeholder='3009999' className={styles.input} />
                 </label>
 
                 <textarea name='description' className={styles.input} placeholder='Digite a descrição do motor' required>
