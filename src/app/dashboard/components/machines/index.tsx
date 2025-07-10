@@ -19,7 +19,7 @@ export function Machines({ machines }: Props) {
 
             <section className="row">
                 {machines.map(machine => (
-                    <button key={machine.id} className="col-12 col-sm-6 col-md-5 col-lg-4 mb-4">
+                    <button key={machine.id} className={`col-12 col-sm-6 col-md-5 col-lg-4 mb-4 ${styles.buttonCard}`}>
                         <div className={`${styles.machineItem} ${styles.ok}`}>
                             <div className={styles.cardHeader}>
                                 <h2>{machine.name}</h2>
