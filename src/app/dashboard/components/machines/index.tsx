@@ -9,15 +9,15 @@ interface Props {
 
 export function Machines({ machines }: Props) {
     return (
-        <main className="container-fluid">
-            <section className="d-flex justify-content-between align-items-center px-3 mb-4">
+        <main className={`container-fluid ${styles.mainNoPadding}`}>
+            <section className={styles.containerHeader}>
                 <h1>Equipamentos</h1>
                 <button>
                     <RefreshCw size={24} color="#0056b3" />
                 </button>
             </section>
 
-            <section className="row">
+            <section className="row gx-3">
                 {machines.map(machine => (
                     <button key={machine.id} className={`col-12 col-sm-6 col-md-5 col-lg-4 mb-4 ${styles.buttonCard}`}>
                         <div className={`${styles.machineItem} ${styles.ok}`}>
