@@ -10,7 +10,7 @@ interface Props {
 export function Machines({ machines }: Props) {
     return (
         <main className="container-fluid">
-            <section className={styles.containerHeader}>
+            <section className="d-flex justify-content-between align-items-center px-3 mb-4">
                 <h1>Equipamentos</h1>
                 <button>
                     <RefreshCw size={24} color="#0056b3" />
