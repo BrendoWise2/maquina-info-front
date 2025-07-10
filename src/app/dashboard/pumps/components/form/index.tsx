@@ -33,9 +33,10 @@ export function Form({ machines }: Props) {
         const type = formData.get("type");
         const description = formData.get("description");
         const manufacturer = formData.get("manufacturer");
+        const codsap = formData.get("codsap");
         const machineIndex = formData.get("machine");
 
-        if (!name || !type || !description || !manufacturer || !machineIndex || !image) {
+        if (!name || !type || !description || !manufacturer || !machineIndex || !codsap || !image) {
             toast.warning("Preencha todos os campos!")
             return;
         }
@@ -46,6 +47,7 @@ export function Form({ machines }: Props) {
         data.append("type", type);
         data.append("description", description);
         data.append("manufacturer", manufacturer);
+        data.append("codsap", codsap);
         data.append("machineId", machines[Number(machineIndex)].id);
         data.append("file", image);
 
@@ -113,16 +115,21 @@ export function Form({ machines }: Props) {
                     ))}
                 </select>
 
-                <label>
+                <label>Name:
                     <input type='text' name='name' required placeholder='Nome de bomba' className={styles.input} />
                 </label>
 
-                <label>
+                <label> Tipo:
                     <input type='text' name='type' required placeholder='Tipo de motor' className={styles.input} />
                 </label>
 
-                <label>
+                <label>Fabricante:
                     <input type='text' name='manufacturer' required placeholder='Okuma' className={styles.input} />
+                </label>
+
+                <label>
+                    Código Sap:
+                    <input type="text" name='codsap' required placeholder='3009999' className={styles.input} />
                 </label>
 
                 <textarea name='description' placeholder='Digite a descricao da bomba' className={styles.input}>

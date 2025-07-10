@@ -36,8 +36,9 @@ export function Form() {
         const name = formData.get("name");
         // const qrcode = formData.get("qrcode");
         const sector = formData.get("sector");
+        const model = formData.get("model");
 
-        if (!name || !sector || !image) {
+        if (!name || !sector || !image || !model) {
             toast.warning("Preencha todos os campos!")
             return;
         }
@@ -45,8 +46,9 @@ export function Form() {
         const data = new FormData();
 
         data.append("name", name);
-        //  data.append("qrcode", qrcode);
+        //data.append("qrcode", qrcode);
         data.append("sector", sector);
+        data.append("model", model);
         data.append("file", image);
 
         await api.post("/machine", data, {
@@ -91,10 +93,14 @@ export function Form() {
                     <input type="text" name="name" placeholder="Nome do equipamento" required className={styles.input} />
                 </label>
 
-
                 <label> Setor:
                     <input type="text" name="sector" placeholder="Usinagem..." className={styles.input} />
                 </label>
+
+                <label>Modelo:
+                    <input type="text" name="model" placeholder="Fanuc-65X" className={styles.input} />
+                </label>
+
                 <Button name="Cadastrar" />
             </form>
         </main>

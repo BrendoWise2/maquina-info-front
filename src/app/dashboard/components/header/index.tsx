@@ -95,7 +95,10 @@ export function Header() {
                                         <Link href="/dashboard/qrcode" className='nav-link text-white fw-semibold px-3 py-2'>Qrcode</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link href="/dashboard/teste" className='nav-link text-white fw-semibold px-3 py-2'>Teste</Link>
+                                        <Link href="/dashboard/fusos" className='nav-link text-white fw-semibold px-3 py-2'>Fusos</Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link href="/dashboard/encoders" className='nav-link text-white fw-semibold px-3 py-2'>Encoders</Link>
                                     </li>
                                     <li className="nav-item">
                                         <form action={handleLogout} className='d-inline'>

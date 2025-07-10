@@ -40,14 +40,14 @@ export function Form({ machines }: Props) {
 
     }
 
-    async function handleRegisterMotor(formData: FormData) {
+    async function handleRegisterFuso(formData: FormData) {
 
         const machineIndex = formData.get("machine");
         const name = formData.get("name");
         const power = formData.get("power");
         const description = formData.get("description");
         const manufacturer = formData.get("manufacturer");
-        const codsap = formData.get("codsap");
+        const codsap = formData.get("codsap")
 
         if (!machineIndex || !name || !power || !description || !manufacturer || !codsap || !image) {
             toast.warning("Preenche todos os campos!")
@@ -68,7 +68,7 @@ export function Form({ machines }: Props) {
 
         const token = await getCookieClient();
 
-        await api.post("/motor", data, {
+        await api.post("/fuso", data, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -80,9 +80,9 @@ export function Form({ machines }: Props) {
     return (
         <main className={styles.container}>
 
-            <h1>Cadastrar Motor</h1>
+            <h1>Cadastrar Fuso</h1>
 
-            <form className={styles.form} action={handleRegisterMotor} >
+            <form className={styles.form} action={handleRegisterFuso} >
 
                 <label className={styles.labelImage}>
                     <span><UploadCloud size={30} color='#000' /></span>
@@ -111,7 +111,7 @@ export function Form({ machines }: Props) {
                 </select>
 
                 <label>
-                    Motor:
+                    Fuso:
                     <input type="text" name='name' required placeholder='Nome do motor...' className={styles.input} />
                 </label>
 
@@ -127,13 +127,13 @@ export function Form({ machines }: Props) {
 
                 <label>
                     Código Sap:
-                    <input type="text" name='codsap' required placeholder='3009999' className={styles.input} />
+                    <input type="text" name='codsap' required placeholder='Okuma...' className={styles.input} />
                 </label>
 
                 <textarea name='description' className={styles.input} placeholder='Digite a descrição do motor' required>
                 </textarea>
 
-                <Button name='Cadastrar Motor' />
+                <Button name='Cadastrar Fuso' />
 
             </form>
 
