@@ -2,7 +2,7 @@
 import { use, useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import Image from 'next/image'; // Para otimização de imagens
-import { Edit, Settings } from 'lucide-react'; // Ícones modernos
+import { Trash2, CircleCheck, ShieldAlert } from 'lucide-react'; // Ícones modernos
 import { api } from '@/services/api';
 import { headers } from 'next/headers';
 import { getCookieClient } from '@/lib/cookieClient';
@@ -107,21 +107,21 @@ export function ShowUser({ users: initialUsers }: Props) {
                                             <div className="d-flex pt-1">
                                                 {user.isApproved == false ? (
                                                     <button type="button" className="btn btn-warning me-1 flex-grow-1" onClick={() => handleApprove(user.id)}>
-                                                        <Edit size={16} className="me-1" /> Aprovar
+                                                        <CircleCheck size={16} className="me-1" /> Aprovar
                                                     </button>
                                                 ) : (
-                                                    <button type="button" className="btn btn-warning me-1 flex-grow-1" onClick={() => handleApprove(user.id)}>
-                                                        <Edit size={16} className="me-1" /> Suspender
+                                                    <button type="button" className="btn btn-primary me-1 flex-grow-1" onClick={() => handleApprove(user.id)}>
+                                                        <ShieldAlert size={16} className="me-1" /> Suspender
                                                     </button>
                                                 )
                                                 }
 
                                                 {user.role === "admin" ? (
                                                     <button type="button" className="btn btn-danger flex-grow-1">
-                                                        <Settings size={16} className="me-1" /> Deletar
+                                                        <Trash2 size={16} className="me-1" /> Deletar
                                                     </button>) : (
                                                     <button type="button" className="btn btn-danger flex-grow-1" disabled>
-                                                        <Settings size={16} className="me-1" /> Somente Admin
+                                                        <Trash2 size={16} className="me-1" /> Somente Admin
                                                     </button>
                                                 )
 

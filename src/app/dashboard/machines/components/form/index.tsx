@@ -8,6 +8,7 @@ import { api } from "@/services/api"
 import { getCookieClient } from "@/lib/cookieClient"
 import { toast } from "sonner"
 import { useRouter } from "next/navigation"
+import { machine } from "os"
 
 export function Form() {
     const router = useRouter();
@@ -89,12 +90,17 @@ export function Form() {
                     )}
 
                 </label>
+
                 <label> Equipamento:
-                    <input type="text" name="name" placeholder="Nome do equipamento" required className={styles.input} />
+                    <input type="text" name="name" placeholder="Usinagem..." className={styles.input} />
                 </label>
 
                 <label> Setor:
-                    <input type="text" name="sector" placeholder="Usinagem..." className={styles.input} />
+                    <select name="sector" className={styles.input}>
+                        <option value="Fundicao">Fundição</option>
+                        <option value="Imf">Imf</option>
+                        <option value="Usinagem">Usinagem</option>
+                    </select>
                 </label>
 
                 <label>Modelo:
