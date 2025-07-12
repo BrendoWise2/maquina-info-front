@@ -1,8 +1,13 @@
 "use client"
-import { useEffect, useState } from 'react';
+import { use, useEffect, useState } from 'react';
 import styles from './styles.module.scss';
 import Image from 'next/image'; // Para otimização de imagens
 import { Edit, Settings } from 'lucide-react'; // Ícones modernos
+import { api } from '@/services/api';
+import { headers } from 'next/headers';
+import { getCookieClient } from '@/lib/cookieClient';
+import { toast } from 'sonner'
+
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
 
 interface UserProps {
@@ -20,7 +25,48 @@ interface Props {
 }
 
 
-export function ShowUser({ users }: Props) {
+export function ShowUser({ users: initialUsers }: Props) {
+
+    const [users, setUsers] = useState<UserProps[]>(initialUsers); //ESTOU FALANDO PARA O TYPE QUE ELE VAI SER DO TIPO DA INTERFACE USER COM ARRAY
+
+    async function handleApprove(userId: string, approve: boolean) {
+
+        const token = await getCookieClient();
+
+        try {
+
+            const response = await api.put(`/users/id/approve`, {}, {
+                params: {
+                    user_id: userId
+                },
+
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            const updateUser = response.data;
+
+            //AQUI VOU ATUALIZAR OS DADOS DO USUARIO PARA O FRONT
+            setUsers(preventUsers =>
+                preventUsers.map(user =>
+                    user.id === userId ? {
+                        ...user, isApproved: updateUser.isApproved
+                    } : user
+                )
+            );
+
+            toast.success("Usuário aprovado com sucesso!")
+
+        } catch (error) {
+            console.error("Erro ao aprovar:", error);
+            toast.error("Não foi possível aprovar o usuário")
+
+        }
+
+    }
+
+
     return (
         <>
             <div className="container py-3 ">
@@ -51,7 +97,7 @@ export function ShowUser({ users }: Props) {
                                                 </div>
                                                 <div className='d-flex justify-content-between'>
                                                     <small className="text-muted">Status:</small>
-                                                    <small>Aprovado</small>
+                                                    <small className={user.isApproved ? 'text-success' : 'text-warning'}>{user.isApproved ? 'Aprovado' : 'Pendente'}</small>
                                                 </div>
                                                 <div className='d-flex justify-content-between'>
                                                     <small className="text-muted">Acesso:</small>
@@ -59,12 +105,28 @@ export function ShowUser({ users }: Props) {
                                                 </div>
                                             </div>
                                             <div className="d-flex pt-1">
-                                                <button type="button" className="btn btn-warning me-1 flex-grow-1">
-                                                    <Edit size={16} className="me-1" /> Aprovar
-                                                </button>
-                                                <button type="button" className="btn btn-danger flex-grow-1">
-                                                    <Settings size={16} className="me-1" /> Deletar
-                                                </button>
+                                                {user.isApproved == false ? (
+                                                    <button type="button" className="btn btn-warning me-1 flex-grow-1" onClick={() => handleApprove(user.id)}>
+                                                        <Edit size={16} className="me-1" /> Aprovar
+                                                    </button>
+                                                ) : (
+                                                    <button type="button" className="btn btn-warning me-1 flex-grow-1" onClick={() => handleApprove(user.id)}>
+                                                        <Edit size={16} className="me-1" /> Suspender
+                                                    </button>
+                                                )
+                                                }
+
+                                                {user.role === "admin" ? (
+                                                    <button type="button" className="btn btn-danger flex-grow-1">
+                                                        <Settings size={16} className="me-1" /> Deletar
+                                                    </button>) : (
+                                                    <button type="button" className="btn btn-danger flex-grow-1" disabled>
+                                                        <Settings size={16} className="me-1" /> Somente Admin
+                                                    </button>
+                                                )
+
+                                                }
+
                                             </div>
                                         </div>
                                     </div>
