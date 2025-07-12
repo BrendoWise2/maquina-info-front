@@ -29,7 +29,7 @@ export function ShowUser({ users: initialUsers }: Props) {
 
     const [users, setUsers] = useState<UserProps[]>(initialUsers); //ESTOU FALANDO PARA O TYPE QUE ELE VAI SER DO TIPO DA INTERFACE USER COM ARRAY
 
-    async function handleApprove(userId: string, approve: boolean) {
+    async function handleApprove(userId: string) {
 
         const token = await getCookieClient();
 
