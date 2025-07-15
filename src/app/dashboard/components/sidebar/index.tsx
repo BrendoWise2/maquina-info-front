@@ -64,7 +64,7 @@ export function SideBar() {
                         IMF <span className="badge bg-primary ms-auto">13</span>
                         <i className="nav-icon cil-speedometer"></i>
                     </CNavItem>
-                    <CNavItem href="#">
+                    <CNavItem href="/dashboard/usinagem">
                         USINAGEM <span className="badge bg-primary ms-auto">19</span>
                         <i className="nav-icon cil-speedometer"></i>
                     </CNavItem>
