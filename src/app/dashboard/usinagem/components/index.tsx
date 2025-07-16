@@ -16,8 +16,11 @@ export function ShowEquipaments({ machines }: Props) {
 
     function handleAccessMachine(machine: MachineProps) {
         setSelectedMachine(machine)
-        const modal = new Modal(document.getElementById('modalMachine'));
-        modal.show();
+        const modalEl = document.getElementById('modalMachine');
+        if (modalEl) {
+            const modal = new Modal(modalEl);
+            modal.show();
+        }
 
         return console.log("clicked")
     }
