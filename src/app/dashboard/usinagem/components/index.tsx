@@ -1,30 +1,24 @@
-"use client"
+"use client";
+import { useState } from "react";
 import { MachineProps } from "@/lib/machine.type";
 import styles from "./styles.module.scss";
-import { RefreshCw, HardDrive, Droplets, BookOpen, CalendarCheck, Hammer, SmartphoneNfc } from "lucide-react";
-import { ModalMachine } from '@/app/dashboard/components/modal/index'
-import { Modal } from 'bootstrap';
-import { useState } from "react";
+import {
+    RefreshCw,
+    HardDrive,
+    Droplets,
+    BookOpen,
+    CalendarCheck,
+    Hammer,
+    SmartphoneNfc,
+} from "lucide-react";
+import { ModalMachine } from "@/app/dashboard/components/modal/index";
 
 interface Props {
-    machines: MachineProps[]
+    machines: MachineProps[];
 }
 
 export function ShowEquipaments({ machines }: Props) {
-
-    const [selectedMachien, setSelectedMachine] = useState<MachineProps | null>(null);
-
-    function handleAccessMachine(machine: MachineProps) {
-        setSelectedMachine(machine)
-        const modalEl = document.getElementById('modalMachine');
-        if (modalEl) {
-            const modal = new Modal(modalEl);
-            modal.show();
-        }
-
-        return console.log("clicked")
-    }
-
+    const [selectedMachine, setSelectedMachine] = useState<MachineProps | null>(null);
 
     return (
         <>
@@ -37,8 +31,12 @@ export function ShowEquipaments({ machines }: Props) {
                 </section>
 
                 <section className="row gx-3">
-                    {machines.map(machine => (
-                        <button key={machine.id} className={`col-12 col-sm-6 col-md-5 col-lg-4 mb-4 ${styles.buttonCard}`} onClick={() => handleAccessMachine}>
+                    {machines.map((machine) => (
+                        <button
+                            key={machine.id}
+                            className={`col-12 col-sm-6 col-md-5 col-lg-4 mb-4 ${styles.buttonCard}`}
+                            onClick={() => setSelectedMachine(machine)}
+                        >
                             <div className={`${styles.machineItem} ${styles.ok}`}>
                                 <div className={styles.cardHeader}>
                                     <h2>{machine.name}</h2>
@@ -48,29 +46,44 @@ export function ShowEquipaments({ machines }: Props) {
                                         <img
                                             alt={machine.name}
                                             src={machine.image}
-                                            className="img-fluid rounded mx-auto d-block shadow w-100" />
+                                            className="img-fluid rounded mx-auto d-block shadow w-100"
+                                        />
                                     </div>
                                     <div className={styles.infoContainer}>
-                                        <p><HardDrive size={16} /> Motores: <span>{machine.motors.length}</span></p>
-                                        <p><Droplets size={16} /> Bombas: <span>{machine.pumps.length}</span></p>
-                                        <p><BookOpen size={16} /> Manuais: <span>{machine.manuals.length}</span></p>
-                                        <p><Hammer size={16} /> Fusos: <span>{machine.fusos.length}</span></p>
-                                        <p><SmartphoneNfc size={16} /> Encoders: <span>{machine.encoders.length}</span></p>
+                                        <p>
+                                            <HardDrive size={16} /> Motores: <span>{machine.motors.length}</span>
+                                        </p>
+                                        <p>
+                                            <Droplets size={16} /> Bombas: <span>{machine.pumps.length}</span>
+                                        </p>
+                                        <p>
+                                            <BookOpen size={16} /> Manuais: <span>{machine.manuals.length}</span>
+                                        </p>
+                                        <p>
+                                            <Hammer size={16} /> Fusos: <span>{machine.fusos.length}</span>
+                                        </p>
+                                        <p>
+                                            <SmartphoneNfc size={16} /> Encoders: <span>{machine.encoders.length}</span>
+                                        </p>
                                     </div>
                                 </div>
                                 <div className={styles.cardFooter}>
-                                    <p><CalendarCheck size={16} /> <span>Última Inspeção: 10/05/2025</span></p>
+                                    <p>
+                                        <CalendarCheck size={16} /> <span>Última Inspeção: 10/05/2025</span>
+                                    </p>
                                 </div>
                             </div>
                         </button>
                     ))}
-
                 </section>
-            </main >
+            </main>
 
-            <ModalMachine machines={machines} />
-
+            {selectedMachine && (
+                <ModalMachine
+                    machine={selectedMachine}
+                    onRequestClose={() => setSelectedMachine(null)}
+                />
+            )}
         </>
-    )
-
+    );
 }

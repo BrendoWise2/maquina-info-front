@@ -7,6 +7,7 @@ import { useState, useEffect } from 'react';
 import { CSidebar, CSidebarHeader, CSidebarBrand, CSidebarNav, CNavItem, CSidebarToggler } from '@coreui/react';
 import "../globals.scss";
 import styles from "../page.module.scss";
+import { MachineProvider } from '@/providers/machine'
 
 
 
@@ -37,7 +38,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                 <SideBar />
 
                 <main className={styles.mainContent}>
-                    {children}
+                    <MachineProvider>
+                        {children}
+                    </MachineProvider>
                 </main>
             </div>
         </>
