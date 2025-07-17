@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react';
 import { Modal as BootstrapModal } from 'bootstrap';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { MachineProps } from '@/lib/machine.type';
+import styles from './styles.module.scss'
 
 interface Props {
     machine: MachineProps;
@@ -87,8 +88,9 @@ export function ModalMachine({ machine, onRequestClose }: Props) {
                                     >
                                         <img
                                             src={motor.image}
-                                            className="d-block w-100"
+                                            className="d-block w-50 m-auto"
                                             alt={motor.name}
+                                            height={"300px"}
                                         />
                                         <div className="carousel-caption d-none d-md-block">
                                             <h5>{motor.name}</h5>
@@ -132,6 +134,6 @@ export function ModalMachine({ machine, onRequestClose }: Props) {
                     </button>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }
