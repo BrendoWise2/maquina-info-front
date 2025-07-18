@@ -7,12 +7,15 @@ import { api } from '@/services/api'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { HardDrive, Droplets, BookOpen, Hammer, SmartphoneNfc } from 'lucide-react'
 import manualLogo from '/public/imagens/util/manual.png'
+import { getCookieClient } from '@/lib/cookieClient'
 
 
 export function Form() {
 
     const [showScanner, setShowScanner] = useState(false);
     const [machine, setMachine] = useState<MachineProps | null>(null);  // Definindo o tipo do estado como `null | boolean` para mais clareza
+
+    const [valueId, setValueId] = useState("")
 
     // Use useEffect para carregar o JS do Bootstrap no cliente
     useEffect(() => {
@@ -39,6 +42,40 @@ export function Form() {
             alert("Erro ao buscar a máquina.");
         }
     }
+
+
+    async function handleFindMachine() {
+
+        const token = await getCookieClient()
+
+        try {
+
+            const response = await api.get('/machine/qrcode', {
+                params: {
+                    qrcode_id: valueId
+                },
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+
+            console.log("sucesso")
+            if (response.data) {
+                setMachine(response.data)
+                setValueId('')
+                setShowScanner(false)
+                console.log("Máquina encontrada com sucesso!");
+            } else {
+                alert("Máquina não encontrada com o ID fornecido.");
+                console.log("Resposta da API vazia para o ID:", valueId);
+            }
+
+        } catch (error) {
+            console.log("erro: ");
+        }
+
+    }
+
 
     return (
         <main className="container-fluid d-flex flex-column justify-content-center align-items-center border p-4">
@@ -67,9 +104,11 @@ export function Form() {
                                 <input
                                     type="text"
                                     placeholder="Id do equipamento"
-                                    className="form-control w-100"
+                                    className="form-control w-100 " id='bnt-id'
+                                    value={valueId}
+                                    onChange={(e) => setValueId(e.target.value)}
                                 />
-                                <button type="button" className="btn btn-dark">
+                                <button type="button" className="btn btn-dark" onClick={handleFindMachine}>
                                     Procurar
                                 </button>
                             </>
@@ -259,9 +298,11 @@ export function Form() {
                                     </div>
                                 </div>
 
-                                <button className="btn btn-outline-secondary w-100 mt-3">
-                                    Voltar
-                                </button>
+                                <a href='/dashboard/qrcode'>
+                                    <button className="btn btn-outline-secondary w-100 mt-3">
+                                        Voltar
+                                    </button>
+                                </a>
                             </div>
                         </div>
 

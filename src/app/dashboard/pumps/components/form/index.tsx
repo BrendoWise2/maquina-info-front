@@ -120,11 +120,11 @@ export function Form({ machines }: Props) {
                 </label>
 
                 <label> Tipo:
-                    <input type='text' name='type' required placeholder='Tipo de motor' className={styles.input} />
+                    <input type='text' name='type' required placeholder='Tipo de bomba' className={styles.input} />
                 </label>
 
                 <label>Fabricante:
-                    <input type='text' name='manufacturer' required placeholder='Okuma' className={styles.input} />
+                    <input type='text' name='manufacturer' required placeholder='Weg' className={styles.input} />
                 </label>
 
                 <label>
